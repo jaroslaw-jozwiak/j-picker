@@ -1,0 +1,42 @@
+.jpicker-value-wrapper {
+  overflow: hidden;
+  font-weight: bold;
+  font-size: 0.8em;
+  text-align: center;
+
+  .jpicker-value-item {
+    display: inline-block;
+  }
+  .jpicker-clickable {
+    cursor: pointer;
+    transition: opacity .1s;
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+  .jpicker-value-one {
+    @extend .jpicker-value-item;
+    @extend .jpicker-clickable;
+  }
+  .jpicker-value-separator {
+    @extend .jpicker-value-item;
+    display: none;
+  }
+  .jpicker-value-two {
+    @extend .jpicker-value-item;
+    @extend .jpicker-clickable;
+    display: none;
+  }
+  &.jpicker-two-values {
+    .jpicker-value-separator, .jpicker-value-two {
+      display: inline-block;
+    }
+  }
+  .jpicker-opacity {
+    opacity: 0.5;
+    cursor: default;
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+}
