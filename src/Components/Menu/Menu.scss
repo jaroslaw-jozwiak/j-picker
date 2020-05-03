@@ -1,0 +1,49 @@
+.jpicker-menu {
+  text-align: center;
+  margin: 20px 0;
+  @include no-selection();
+
+  .jpicker-menu-item {
+    display: inline-block;
+  }
+  .jpicker-arrow-left,
+  .jpicker-arrow-right {
+    @extend .jpicker-menu-item;
+    margin-bottom: -14px;
+  }
+  .border-bottom {
+    border: 0;
+    border-bottom: 1px solid #aaa;
+    cursor: pointer;
+    transition: border-color .1s;
+    margin: 0 5px;
+    &:hover {
+      border-color: #777;
+    }
+  }
+  .jpicker-menu-month {
+    @extend .jpicker-menu-item;
+    @extend .border-bottom;
+    padding: 1px;
+    width: 90px;
+  }
+  .jpicker-menu-year {
+    @extend .jpicker-menu-item;
+
+    .jpicker-menu-year-value {
+      @extend .border-bottom;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      width: 54px;
+      text-align: center;
+      outline: none;
+
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+    }
+  }
+}

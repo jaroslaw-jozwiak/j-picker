@@ -1,0 +1,37 @@
+$mdc-theme-primary: #333;
+$mdc-theme-secondary: #1e4bff;
+$mdc-theme-background: #fff;
+$mdc-theme-surface: #888;
+$mdc-theme-text-primary-on-light: #fff;
+$mdc-theme-text-secondary-on-light: #fff;
+$mdc-theme-text-hint-on-light: #fff;
+$mdc-theme-text-disabled-on-light: #fff;
+$mdc-theme-text-icon-on-light: #fff;
+$mdc-theme-text-primary-on-dark: #fff;
+$mdc-theme-text-secondary-on-dark: #fff;
+$mdc-theme-text-hint-on-dark: #fff;
+$mdc-theme-text-disabled-on-dark: #fff;
+$mdc-theme-text-icon-on-dark: #fff;
+$mdc-theme-on-primary: #fff;
+$mdc-theme-on-secondary: #fff;
+$mdc-theme-on-surface: #fff;
+$mdc-shape-small-component-radius: 0px;
+$mdc-shape-medium-component-radius: 0px;
+$mdc-shape-large-component-radius: 0px;
+$jpicker-cell-hover-bg: #bfcbd8;
+$jpicker-cell-hover-text: #000;
+$jpicker-cell-preselected-bg: #ddd;
+$jpicker-cell-preselected-text: #000;
+$jpicker-cell-selected-range-bg: #ddd;
+$jpicker-cell-selected-range-text: #000;
+$jpicker-cell-selected-bg: #506c82;
+$jpicker-cell-selected-text: #fff;
+
+@mixin no-selection() {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none;
+}

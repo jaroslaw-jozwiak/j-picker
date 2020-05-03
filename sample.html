@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>JPickerTest</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="dist/JPicker.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h3>Install</h3>
+                <pre>require(['dist/JPicker.js'], function(JPicker) {
+    var JPickerI = new JPicker({...});
+});</pre>
+                <pre>&lt;script src="/dist/JPicker.js"&gt;&lt;/script&gt;
+var JPickerI = new JPicker({
+    wrapper: '.date-picker-wrapper',
+    title: 'Wybierz date',
+    description: 'Wybierz termin na który chcesz zarezerwować pokój',
+    range: true
+});</pre>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="date-picker-wrapper"></div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
+
+    <script>
+        require(['dist/JPicker.js'], function(JPicker) {
+            var JPickerI = new JPicker({
+                wrapper: '.date-picker-wrapper',
+                title: 'Wybierz date',
+                description: 'Wybierz termin na który chcesz zarezerwować pokój',
+                range: true
+            });
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+.jpicker-list-wrapper {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  background: #fff;
+  left: 0;
+  height: 260px;
+
+  .jpicker-list {
+    overflow: hidden;
+  }
+  .jpicker-element {
+    float: left;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    width: 31%;
+    margin: 1%;
+    text-align: center;
+    padding: 2%;
+
+    &:hover,
+    &.jpicker-selected {
+      background-color: $jpicker-cell-hover-bg;
+    }
+  }
+}

@@ -1,0 +1,62 @@
+.jpicker-days-wrapper {
+    position: relative;
+    transition: left .2s;
+    left: 0;
+
+    .jpicker-calendar-row {
+        overflow: hidden;
+    }
+    .jpicker-calendar-cell {
+        float: left;
+        width: 14.28%;
+        position: relative;
+        cursor: default;
+        &.jpicker-label,
+        &.today {
+            font-weight: bold;
+        }
+        &.av {
+            .jpicker-calendar-cell-content {
+                cursor: pointer;
+                transition: background .2s, color .2s;
+                &:hover {
+                    background-color: $jpicker-cell-hover-bg;
+                }
+            }
+        }
+        &.jpicker-selected-day .jpicker-calendar-cell-content {
+            background-color: $jpicker-cell-selected-bg;
+            color: $jpicker-cell-selected-text;
+        }
+        &.jpicker-selected-range-day .jpicker-calendar-cell-content {
+            background-color: $jpicker-cell-selected-range-bg;
+            color: $jpicker-cell-selected-range-text;
+        }
+        &.preselected .jpicker-calendar-cell-content {
+            background-color: $jpicker-cell-preselected-bg;
+        }
+        &::after {
+            content: "";
+            display: block;
+            padding-bottom: 100%;
+        }
+    }
+    .jpicker-calendar-cell-content {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+    }
+    .jpicker-cell-out {
+        display: table;
+        vertical-align: middle;
+        height: 100%;
+        width: 100%;
+    }
+    .jpicker-cell-in {
+        display: table-cell;
+        vertical-align: middle;
+        height: 100%;
+        width: 100%;
+    }
+}

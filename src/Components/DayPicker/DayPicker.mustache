@@ -1,0 +1,15 @@
+<div class="jpicker-days-wrapper">
+    {{#calendar}}
+        <div class="jpicker-calendar-row">
+            {{#.}}
+                <div class="jpicker-calendar-cell {{cellClass}}" {{#attributes}}{{.}} {{/attributes}}>
+                    <div class="jpicker-calendar-cell-content">
+                        <div class="jpicker-cell-out">
+                            <div class="jpicker-cell-in">{{{content}}}</div>
+                        </div>
+                    </div>
+                </div>
+            {{/.}}
+        </div>
+    {{/calendar}}
+</div>
