@@ -33,6 +33,20 @@ export abstract class Component {
         return this;
     }
 
+    public show(): Component
+    {
+        this.getHTMLElement().classList.remove('jpicker-hidden');
+        
+        return this;
+    }
+
+    public hide(): Component
+    {
+        this.getHTMLElement().classList.add('jpicker-hidden');
+
+        return this;
+    }
+
     protected onComponentPreparation(): Component {
         return this;
     }

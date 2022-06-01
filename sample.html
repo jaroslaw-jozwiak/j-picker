@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>JPickerTest</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link href="dist/JPicker.css" rel="stylesheet">
+    <link href="bundle/JPicker.css" rel="stylesheet">
 </head>
 
 <body>
@@ -34,12 +34,28 @@ var JPickerI = new JPicker({
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
 
     <script>
-        require(['dist/JPicker.js'], function(JPicker) {
+        require(['bundle/JPicker.js'], function(JPicker) {
             var JPickerI = new JPicker({
                 wrapper: '.date-picker-wrapper',
                 title: 'Wybierz date',
                 description: 'Wybierz termin na który chcesz zarezerwować pokój',
-                range: true
+                range: true,
+                events: {
+                    onValueClick: function() {
+                        console.log('onValueClick', arguments)
+                    },
+                    onDayClick: function() {
+                        console.log('onDayClick', arguments)
+                    },
+                    onChangeValue: function() {
+                        console.log('onChangeValue', arguments)
+                    }
+                }
+                //currentDate: new Date(2022, 4, 10)
+                //currentDate: [new Date(2022, 4, 10), new Date(2022, 4, 15)]
+                //today: new Date(2022, 4, 15, 1, 22)
+                //weekDays: [],
+                //months: []
             });
         });
     </script>

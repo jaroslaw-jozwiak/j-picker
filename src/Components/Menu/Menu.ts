@@ -1,7 +1,7 @@
 import {Component} from "../Component";
 import {HTMLEvent} from "../../Interface/HTMLEvent";
 import {Event} from "../../Classes/Event";
-import {NEXT_MONTH_CLICK, PREV_MONTH_CLICK} from "../../Classes/EventsDict";
+import {NEXT_MONTH_CLICK, PREV_MONTH_CLICK, MENU_MONTH_CLICK} from "../../Classes/EventsDict";
 import {JPickerConfig} from "../../Classes/JPickerConfig";
 
 export class Menu extends Component
@@ -45,7 +45,8 @@ export class Menu extends Component
     protected getEvents(): Array<HTMLEvent> {
         return [
             this.getEventObject('.jpicker-arrow-right', 'click', this.onArrayRightClick),
-            this.getEventObject('.jpicker-arrow-left', 'click', this.onArrayLeftClick)
+            this.getEventObject('.jpicker-arrow-left', 'click', this.onArrayLeftClick),
+            this.getEventObject('.jpicker-menu-month', 'click', this.onMonthClick)
         ];
     }
 
@@ -57,6 +58,11 @@ export class Menu extends Component
     protected onArrayLeftClick()
     {
         Event.get().trigger(PREV_MONTH_CLICK);
+    }
+
+    protected onMonthClick()
+    {
+        Event.get().trigger(MENU_MONTH_CLICK);
     }
 
     protected getMustacheVars(): Object

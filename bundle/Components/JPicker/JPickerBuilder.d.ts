@@ -23,6 +23,7 @@ export declare class JPickerBuilder extends JPickerHelper {
     getMonthPicker(): MonthPicker;
     getYearPicker(): YearPicker;
     getRanges(): Ranges;
+    showMonthPicker(): JPickerBuilder;
     protected prepareHeader(): JPickerBuilder;
     protected prepareValue(): JPickerBuilder;
     protected prepareMenu(): JPickerBuilder;

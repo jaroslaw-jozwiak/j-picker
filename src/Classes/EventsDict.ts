@@ -1,3 +1,4 @@
+export const CHANGE_VALUE = 'onChangeValue';
 export const NEXT_MONTH_CLICK = 'onNextMonthClick';
 export const PREV_MONTH_CLICK = 'onPrevMonthClick';
 export const DAY_CLICK = 'onDayClick';
@@ -5,3 +6,5 @@ export const DAY_MOUSE_ENTER = 'onDayMouseEnter';
 export const DAY_MOUSE_LEAVE = 'onDayMouseLeave';
 export const RANGE_CLICK = 'onRangeClick';
 export const VALUE_CLICK = 'onValueClick';
+export const MENU_MONTH_CLICK = 'onMenuMonthClick';
+export const MONTH_CLICK = 'onMonthClick';

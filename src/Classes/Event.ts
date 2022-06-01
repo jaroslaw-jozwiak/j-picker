@@ -52,7 +52,7 @@ export class Event {
         let key = this.callbacksIdsSet[callbackId] || '';
 
         if (typeof this.events[key] !== 'undefined') {
-            this.events[key].removeListener(callbackId);
+            this.events[key].removeCallback(callbackId);
         }
 
         return this;
@@ -62,8 +62,6 @@ export class Event {
     {
         if (Tools.d(this.events[key])) {
             (<EventCallback>this.events[key]).run(args);
-        } else {
-            Tools.error('Event ' + key + ' is not defined');
         }
 
         return this;

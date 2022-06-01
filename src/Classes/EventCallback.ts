@@ -4,7 +4,7 @@ export class EventCallback {
 
     protected callbacks: Array<Function> = [];
 
-    protected callbacksIndex: Object = {};
+    protected callbacksIndex: {[key: number]: number} = {};
 
     public constructor(key: string)
     {
@@ -27,13 +27,14 @@ export class EventCallback {
         return this;
     }
 
-    public removeEvent(callbackId: number): EventCallback
+    public removeCallback(callbackId: number): EventCallback
     {
-        let index = this.callbacksIndex[callbackId] || -1;
+        let index = this.callbacksIndex[callbackId];
 
-        if (index > -1) {
+        if (typeof index !== 'undefined' && index > -1) {
             this.callbacks.splice(index, 1);
         }
+
         delete this.callbacksIndex[callbackId];
 
         return this;

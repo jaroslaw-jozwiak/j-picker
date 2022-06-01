@@ -1,7 +1,5 @@
-import {HTMLEvent} from "../Interface/HTMLEvent";
-
+import { HTMLEvent } from "../Interface/HTMLEvent";
 export class HTMLBuilder {
-
     protected HTMLElement: HTMLElement = null;
 
     protected mustachePath: string;
@@ -15,8 +13,8 @@ export class HTMLBuilder {
     public getHTMLElement(): HTMLElement {
         if (this.HTMLElement === null) {
             this.prepareElement();
+            this.prepareEvents();
         }
-        this.prepareEvents();
 
         return this.HTMLElement;
     }
@@ -33,11 +31,15 @@ export class HTMLBuilder {
         return this;
     }
 
-    public addEvent(selector: string, type: string, callback: Function): HTMLBuilder {
+    public addEvent(
+        selector: string,
+        type: string,
+        callback: Function
+    ): HTMLBuilder {
         return this.addEventObject({
             selector: selector,
             type: type,
-            callback: callback
+            callback: callback,
         });
     }
 
@@ -60,7 +62,7 @@ export class HTMLBuilder {
     }
 
     protected prepareElement(): HTMLBuilder {
-        let parent = document.createElement('div');
+        let parent = document.createElement("div");
 
         parent.innerHTML = this.getHTMLFromMustache();
         this.HTMLElement = <HTMLElement>parent.firstChild;
@@ -72,13 +74,13 @@ export class HTMLBuilder {
         this.events.forEach((event: HTMLEvent) => {
             let elements;
 
-            if (event.selector === 'this') {
+            if (event.selector === "this") {
                 elements = [this.HTMLElement];
             } else {
                 elements = this.HTMLElement.querySelectorAll(event.selector);
             }
 
-            elements.forEach(Element => {
+            elements.forEach((Element) => {
                 Element.addEventListener(event.type, event.callback);
             });
         });
@@ -89,7 +91,10 @@ export class HTMLBuilder {
     }
 
     protected getHTMLFromMustache(): string {
-        return this.mustacheRequireCallback(this.mustacheVars);
-    }
+        if (typeof this.mustacheRequireCallback === "function") {
+            return this.mustacheRequireCallback(this.mustacheVars);
+        }
 
+        return "";
+    }
 }

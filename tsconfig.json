@@ -1,13 +1,16 @@
 {
   "compilerOptions": {
+    "outDir": "./bundle",
+    "module": "commonjs",
     "target": "es5",
-    "module": "es6",
     "declaration": true,
-    "outDir": "./dist",
-    "strict": false,
-    "allowUmdGlobalAccess": true,
-    "allowJs": true
+    "esModuleInterop": true
   },
-  "include": ["src"],
-  "exclude": ["node_modules", "**/__tests__/*"]
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/__tests__/*"
+  ]
 }
