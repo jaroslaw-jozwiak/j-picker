@@ -9,6 +9,7 @@ export declare class Menu extends Component {
     protected getEvents(): Array<HTMLEvent>;
     protected onArrayRightClick(): void;
     protected onArrayLeftClick(): void;
+    protected onMonthClick(): void;
     protected getMustacheVars(): Object;
     protected getMonthName(): string;
     protected getMustache(): any;

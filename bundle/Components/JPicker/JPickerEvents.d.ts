@@ -14,6 +14,8 @@ export declare class JPickerEvents extends JPickerHelper {
     protected dayMouseLeave(day: number, date: Array<number>): JPickerEvents;
     protected rangeClick(FromDate: Date, ToDate: Date): JPickerEvents;
     protected valueClick(ValueDate: Date): JPickerEvents;
+    protected menuMonthClick(): JPickerEvents;
+    protected monthClick(month: number): JPickerEvents;
     protected changeMonth(increment: boolean): JPickerEvents;
     protected setMonthAndYear(month: number, year: number): JPickerEvents;
 }

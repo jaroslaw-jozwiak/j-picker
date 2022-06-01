@@ -6,6 +6,7 @@ import {Event} from "../../Classes/Event";
 import {JPickerBuilder} from "./JPickerBuilder";
 import {JPickerEvents} from "./JPickerEvents";
 import {JPickerChanger} from "./JPickerChanger";
+import { CHANGE_VALUE } from "../../Classes/EventsDict";
 
 export class JPicker extends Component
 {
@@ -43,6 +44,7 @@ export class JPicker extends Component
     public setCurrentValue(currentValue: Array<Date>): JPicker
     {
         this.currentValue = currentValue;
+        Event.get().trigger(CHANGE_VALUE, currentValue);
 
         return this;
     }
@@ -59,11 +61,6 @@ export class JPicker extends Component
         return this;
     }
 
-    public changeDate()
-    {
-
-    }
-
     protected run()
     {
         let Wrapper = new DOM(JPickerConfig.get().getWrapper());
@@ -76,6 +73,7 @@ export class JPicker extends Component
 
     protected getMustache(): any
     {
+        //return './JPicker.mustache';
         return require('./JPicker.mustache');
     }
 

@@ -15,7 +15,6 @@ export declare class JPicker extends Component {
     setCurrentValue(currentValue: Array<Date>): JPicker;
     getVisibleDate(): Array<number>;
     setVisibleDate(visibleDate: Array<number>): JPicker;
-    changeDate(): void;
     protected run(): void;
     protected getMustache(): any;
 }

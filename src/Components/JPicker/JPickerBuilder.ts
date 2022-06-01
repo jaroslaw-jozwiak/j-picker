@@ -27,7 +27,6 @@ export class JPickerBuilder extends JPickerHelper {
     public buildHTML(): JPickerBuilder
     {
         let JPickerHTML = this.JPickerI.getHTMLElement();
-
         this
             .prepareHeader()
             .prepareValue()
@@ -36,15 +35,16 @@ export class JPickerBuilder extends JPickerHelper {
             .prepareMonthPicker()
             .prepareYearPicker()
             .prepareRanges();
-
         JPickerHTML.appendChild(this.HeaderI.getHTMLElement());
         JPickerHTML.appendChild(this.ValueI.getHTMLElement());
         JPickerHTML.appendChild(this.MenuI.getHTMLElement());
+        JPickerHTML.appendChild(this.MonthPickerI.getHTMLElement());
         JPickerHTML.appendChild(this.DayPickerI.getHTMLElement());
         if (this.JPickerConfigI.showRangesPredefined()) {
             JPickerHTML.appendChild(this.RangesI.getHTMLElement());
         }
-        //JPickerHTML.appendChild(this.MonthPickerI.getHTMLElement());
+        //@todo year picker
+        //JPickerHTML.appendChild(this.YearPickerI.getHTMLElement());
 
         return this;
     }
@@ -89,6 +89,13 @@ export class JPickerBuilder extends JPickerHelper {
     public getRanges(): Ranges
     {
         return this.RangesI;
+    }
+
+    public showMonthPicker(): JPickerBuilder
+    {
+        
+
+        return this;
     }
 
     protected prepareHeader(): JPickerBuilder

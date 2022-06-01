@@ -6,8 +6,12 @@ export interface JPickerConfigInterface {
     today?: Date | number;
     weekDays?: Array<string>;
     months?: Array<string>;
-    events?: Object;
+    events?: {
+        [enentName: string]: Function;
+    };
     rangesSet?: Array<RangeInterface | string>;
-    rangesLabels?: Object;
+    rangesLabels?: {
+        [rangeName: string]: string;
+    };
     rangesTitle?: string;
 }

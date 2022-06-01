@@ -14,11 +14,15 @@ export interface JPickerConfigInterface
 
     months?: Array<string>;
 
-    events?: Object;
+    events?: {
+        [enentName: string]: Function
+    };
 
     rangesSet?: Array<RangeInterface | string>;
 
-    rangesLabels?: Object;
+    rangesLabels?: {
+        [rangeName: string]: string
+    };
 
     rangesTitle?: string;
 

@@ -1,7 +1,10 @@
+import { MONTH_CLICK } from './../../Classes/EventsDict';
 import {Picker} from "../Picker";
 import {HTMLEvent} from "../../Interface/HTMLEvent";
 import {ElementInterface} from "../../Interface/ElementInterface";
 import {JPickerConfig} from "../../Classes/JPickerConfig";
+import { Event } from '../../Classes/Event';
+import { Tools } from '../../Classes/Tools';
 
 export class MonthPicker extends Picker {
 
@@ -13,20 +16,32 @@ export class MonthPicker extends Picker {
         this.month = month;
     }
 
+    public setMonth(month: number): MonthPicker
+    {
+        this.month = month;
+
+        return this;
+    }
+
     protected getEvents(): Array<HTMLEvent> {
         return [
-            this.getEventObject('.jpicker-element', 'click', this.onMonthClick)
+            this.getEventObject('.jpicker-element', 'click', this.onMonthClick(this))
         ];
     }
 
-    protected onMonthClick(): any {
-        console.log(this, arguments);
+    protected onMonthClick(that: MonthPicker): any {
+        return function(EventData: MouseEvent) {
+            let month = (<HTMLElement>this).getAttribute('data-key'),
+                monthConverted = Tools.int(month);
+
+                Event.get().trigger(MONTH_CLICK, monthConverted);
+           }  
     }
 
     protected getMustacheVars(): Object {
         return {
             elements: this.getMonths(),
-            wrapperClass: 'jpicker-months-wrapper'
+            wrapperClass: 'jpicker-months-wrapper jpicker-hidden'
         };
     }
 

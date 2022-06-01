@@ -6,6 +6,8 @@ export declare abstract class Component {
     constructor();
     getHTMLElement(): HTMLElement;
     refreshHTMLElement(): Component;
+    show(): Component;
+    hide(): Component;
     protected onComponentPreparation(): Component;
     protected getEventObject(selector: string, type: string, callback: Function): HTMLEvent;
     protected getEvents(): Array<HTMLEvent>;
