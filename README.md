@@ -17,8 +17,6 @@ Simply date picker for web applications
 
 ## Getting started
 
-<br />
-
 ### Installation
 
 You can use npm `npm install j-picker` or just download bundle files for bundle dir
@@ -27,15 +25,12 @@ You can use npm `npm install j-picker` or just download bundle files for bundle 
 
 ### Usages 
 
-<br />
 
 #### 1. Add css file to your page
 
 ```html
 <link href="bundle/JPicker.css" rel="stylesheet">
 ```
-
-<br />
 
 #### 2. Add JS 
 
@@ -55,8 +50,6 @@ OR
 ```javascript
 const JPicker = require('j-picker');
 ```
-
-<br />
 
 #### 3. Create instance of JPicker with config
 
