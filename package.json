@@ -4,6 +4,9 @@
     "description": "Simply date picker for web applications",
     "main": "bundle/JPicker.js",
     "types": "bundle/JPicker.d.ts",
+    "files": [
+        "/bundle"
+    ],
     "homepage": "https://github.com/jaroslaw-jozwiak/j-picker",
     "repository": {
         "type": "git",
