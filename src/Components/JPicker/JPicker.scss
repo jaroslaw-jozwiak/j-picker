@@ -1,9 +1,9 @@
 .jpicker-wrapper {
   width: 320px;
-  box-shadow: 0 0 10px #ddd;
   padding: 20px 10px 10px;
   overflow: hidden;
   position: relative;
+  border: 1px solid #ddd;
 
   .jpicker-arrow-right,
   .jpicker-arrow-left {

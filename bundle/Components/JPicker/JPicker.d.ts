@@ -1,14 +1,13 @@
 import { JPickerConfigInterface } from "../../Interface/JPickerConfigInterface";
 import { Component } from "../Component";
 import { JPickerBuilder } from "./JPickerBuilder";
-import { JPickerEvents } from "./JPickerEvents";
-import { JPickerChanger } from "./JPickerChanger";
 export declare class JPicker extends Component {
-    protected JPickerBuilderI: JPickerBuilder;
-    protected JPickerEventsI: JPickerEvents;
-    protected JPickerChangerI: JPickerChanger;
-    protected currentValue: Array<Date>;
-    protected visibleDate: Array<number>;
+    private JPickerBuilderI;
+    private JPickerEventsI;
+    private currentValue;
+    private visibleDate;
+    private event;
+    private config;
     constructor(config?: JPickerConfigInterface);
     getBuilder(): JPickerBuilder;
     getCurrentValue(): Array<Date>;

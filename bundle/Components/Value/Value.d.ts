@@ -1,11 +1,13 @@
 import { Component } from "../Component";
 import { HTMLEvent } from "../../Interface/HTMLEvent";
+import { Event } from "../../Classes/Event";
 export declare class Value extends Component {
     protected date1: Date;
     protected dateOpacity1: boolean;
     protected date2: Date;
     protected dateOpacity2: boolean;
-    constructor(date1?: Date, date2?: Date);
+    private event;
+    constructor(event: Event, date1?: Date, date2?: Date);
     setDateOne(date1: Date): Value;
     setDateTwo(date2: Date): Value;
     setDateOneOpacity(dateOpacity1: boolean): Value;

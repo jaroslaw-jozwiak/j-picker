@@ -1,16 +1,11 @@
 .jpicker-menu {
-  text-align: center;
   margin: 20px 0;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
   @include no-selection();
 
-  .jpicker-menu-item {
-    display: inline-block;
-  }
-  .jpicker-arrow-left,
-  .jpicker-arrow-right {
-    @extend .jpicker-menu-item;
-    margin-bottom: -14px;
-  }
   .border-bottom {
     border: 0;
     border-bottom: 1px solid #aaa;
@@ -22,28 +17,29 @@
     }
   }
   .jpicker-menu-month {
-    @extend .jpicker-menu-item;
     @extend .border-bottom;
     padding: 1px;
     width: 90px;
+    height: 24px;
+    box-sizing: border-box;
+    text-align: center;
   }
-  .jpicker-menu-year {
-    @extend .jpicker-menu-item;
+  .jpicker-menu-year-value {
+    @extend .border-bottom;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 54px;
+    text-align: center;
+    outline: none;
+    height: 22px;
+    padding: 0;
+    box-sizing: border-box;
 
-    .jpicker-menu-year-value {
-      @extend .border-bottom;
-      appearance: none;
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
       -webkit-appearance: none;
-      -moz-appearance: none;
-      width: 54px;
-      text-align: center;
-      outline: none;
-
-      &::-webkit-outer-spin-button,
-      &::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-      }
+      margin: 0;
     }
   }
 }

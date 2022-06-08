@@ -10,9 +10,15 @@ export class Menu extends Component
 
     protected year: number;
 
-    public constructor(month: number, year: number)
+    private event: Event;
+
+    private config: JPickerConfig;
+
+    public constructor(event: Event, config: JPickerConfig, month: number, year: number)
     {
         super();
+        this.event = event;
+        this.config = config;
         this.month = month;
         this.year = year;
     }
@@ -44,25 +50,32 @@ export class Menu extends Component
 
     protected getEvents(): Array<HTMLEvent> {
         return [
-            this.getEventObject('.jpicker-arrow-right', 'click', this.onArrayRightClick),
-            this.getEventObject('.jpicker-arrow-left', 'click', this.onArrayLeftClick),
-            this.getEventObject('.jpicker-menu-month', 'click', this.onMonthClick)
+            this.getEventObject('.jpicker-arrow-right', 'click', this.onArrayRightClick(this)),
+            this.getEventObject('.jpicker-arrow-left', 'click', this.onArrayLeftClick(this)),
+            this.getEventObject('.jpicker-menu-month', 'click', this.onMonthClick(this))
         ];
     }
 
-    protected onArrayRightClick()
+    protected onArrayRightClick(that: Menu)
     {
-        Event.get().trigger(NEXT_MONTH_CLICK);
+        return () => {
+            that.event.trigger(NEXT_MONTH_CLICK);
+        }
+        
     }
 
-    protected onArrayLeftClick()
+    protected onArrayLeftClick(that: Menu)
     {
-        Event.get().trigger(PREV_MONTH_CLICK);
+        return () => {
+            that.event.trigger(PREV_MONTH_CLICK);
+        }
     }
 
-    protected onMonthClick()
+    protected onMonthClick(that: Menu)
     {
-        Event.get().trigger(MENU_MONTH_CLICK);
+        return () => {
+            that.event.trigger(MENU_MONTH_CLICK);
+        }
     }
 
     protected getMustacheVars(): Object
@@ -75,7 +88,7 @@ export class Menu extends Component
 
     protected getMonthName(): string
     {
-        return JPickerConfig.get().getMonths()[this.month - 1];
+        return this.config.getMonths()[this.month - 1];
     }
 
     protected getMustache(): any

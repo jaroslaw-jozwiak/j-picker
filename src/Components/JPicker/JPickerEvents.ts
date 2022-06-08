@@ -26,7 +26,7 @@ export class JPickerEvents extends JPickerHelper {
     {
         return this
             .addListeners(this.getDefaultEvents())
-            .addListeners(this.JPickerConfigI.getObjectValue('events'));
+            .addListeners(this.config.getObjectValue('events'));
     }
 
     public nextMonthClick(): JPickerEvents
@@ -67,7 +67,7 @@ export class JPickerEvents extends JPickerHelper {
     {
         for (let eventName in events) {
             if (Tools.isFunction(events[eventName])) {
-                Event.get().addListener(eventName, events[eventName]);
+                this.event.addListener(eventName, events[eventName]);
             }
         }
 
@@ -78,7 +78,7 @@ export class JPickerEvents extends JPickerHelper {
     {
         let DateI = new Date(date[2], date[1] - 1, date[0]);
 
-        if (this.JPickerConfigI.isRange()) {
+        if (this.config.isRange()) {
             if ((this.daysSelected % 2) === 0) {
                 this.dateOneTmp = DateI;
                 this.dateTwoTmp = null;
@@ -127,7 +127,7 @@ export class JPickerEvents extends JPickerHelper {
 
     protected dayMouseEnter(day: number, date: Array<number>): JPickerEvents
     {
-        if (this.JPickerConfigI.isRange() && this.dateTwoTmp === null) {
+        if (this.config.isRange() && this.dateTwoTmp === null) {
             let DateI = new Date(date[2], date[1] - 1, date[0]);
 
             this.JPickerI.getBuilder().getDayPicker().setDayWithMouseEnter(DateI).refreshSelectedDays();
@@ -138,7 +138,7 @@ export class JPickerEvents extends JPickerHelper {
 
     protected dayMouseLeave(day: number, date: Array<number>): JPickerEvents
     {
-        if (this.JPickerConfigI.isRange() && this.dateTwoTmp === null) {
+        if (this.config.isRange() && this.dateTwoTmp === null) {
             this.JPickerI.getBuilder().getDayPicker().setDayWithMouseEnter(null).refreshSelectedDays();
         }
 

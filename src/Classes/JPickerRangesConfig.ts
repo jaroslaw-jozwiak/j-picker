@@ -30,7 +30,10 @@ export class JPickerRangesConfig {
 
     protected userRanges: Array<RangeInterface | string> = [];
 
-    public constructor(userRanges: Array<RangeInterface | string>) {
+    private config: JPickerConfig;
+
+    public constructor(config: JPickerConfig, userRanges: Array<RangeInterface | string>) {
+        this.config = config;
         if (Tools.isArray(userRanges)) {
             this.userRanges = userRanges;
         } else {
@@ -80,7 +83,7 @@ export class JPickerRangesConfig {
 
     protected getRangeData(key: string): RangeInterface
     {
-        let labels = JPickerConfig.get().getRangesLabel(),
+        let labels = this.config.getRangesLabel(),
             label = labels[key] || Tools.error('Range key "'+key+'" does not have label'),
             rangesTmp;
 
@@ -121,7 +124,7 @@ export class JPickerRangesConfig {
 
     protected processWeeks(range: string): Array<number>
     {
-        let today = JPickerConfig.get().getToday(),
+        let today = this.config.getToday(),
             currentDay = today.getDay(),
             currentTime = today.getTime(),
             from,
@@ -150,7 +153,7 @@ export class JPickerRangesConfig {
 
     protected processLastDays(range: string): Array<number>
     {
-        let to = JPickerConfig.get().getToday().getTime(),
+        let to = this.config.getToday().getTime(),
             from = to;
 
         switch (range) {
@@ -170,7 +173,7 @@ export class JPickerRangesConfig {
 
     protected processMonths(range: string): Array<number>
     {
-        let today = JPickerConfig.get().getToday(),
+        let today = this.config.getToday(),
             currentMonth = today.getMonth(),
             nextMonth = currentMonth + 1,
             prevMonth = currentMonth - 1,
@@ -214,7 +217,7 @@ export class JPickerRangesConfig {
 
     protected processQuarters(range: string): Array<number>
     {
-        let today = JPickerConfig.get().getToday(),
+        let today = this.config.getToday(),
             currentQuarter,
             currentMonth = today.getMonth(),
             nextMonth,

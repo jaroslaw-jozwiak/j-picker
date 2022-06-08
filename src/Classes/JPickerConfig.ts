@@ -7,17 +7,11 @@ export class JPickerConfig
 {
     private static Instance: JPickerConfig = null;
 
-    private constructor() { }
-
     private config: JPickerConfigInterface = {};
 
-    public static get(): JPickerConfig
+    public constructor(config: JPickerConfigInterface = null)
     {
-        if (JPickerConfig.Instance === null) {
-            JPickerConfig.Instance = new JPickerConfig;
-        }
-
-        return JPickerConfig.Instance;
+        this.setConfig(config);
     }
 
     public setConfig(config: JPickerConfigInterface = null): JPickerConfig
@@ -144,7 +138,7 @@ export class JPickerConfig
                 rangesSet = null;
             }
 
-            return (new JPickerRangesConfig(this.config.rangesSet)).getRanges();
+            return (new JPickerRangesConfig(this, this.config.rangesSet)).getRanges();
         }
 
         return [];

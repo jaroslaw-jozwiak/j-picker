@@ -7,6 +7,8 @@ import {Value} from "../Value/Value";
 import {JPickerHelper} from "./JPickerHelper";
 import {Tools} from "../../Classes/Tools";
 import {Ranges} from "../Ranges/Ranges";
+import { JPicker } from "./JPicker";
+import { Event } from "../../Classes/Event";
 
 export class JPickerBuilder extends JPickerHelper {
 
@@ -40,7 +42,7 @@ export class JPickerBuilder extends JPickerHelper {
         JPickerHTML.appendChild(this.MenuI.getHTMLElement());
         JPickerHTML.appendChild(this.MonthPickerI.getHTMLElement());
         JPickerHTML.appendChild(this.DayPickerI.getHTMLElement());
-        if (this.JPickerConfigI.showRangesPredefined()) {
+        if (this.config.showRangesPredefined()) {
             JPickerHTML.appendChild(this.RangesI.getHTMLElement());
         }
         //@todo year picker
@@ -100,8 +102,8 @@ export class JPickerBuilder extends JPickerHelper {
 
     protected prepareHeader(): JPickerBuilder
     {
-        let title = this.JPickerConfigI.getTextValue('title'),
-            description = this.JPickerConfigI.getTextValue('description');
+        let title = this.config.getTextValue('title'),
+            description = this.config.getTextValue('description');
 
         this.HeaderI = new Header(title, description);
 
@@ -110,32 +112,37 @@ export class JPickerBuilder extends JPickerHelper {
 
     protected prepareValue(): JPickerBuilder
     {
-        let currentValue = this.JPickerConfigI.getCurrentValue();
+        let currentValue = this.config.getCurrentValue();
 
         this.JPickerI.setCurrentValue(currentValue);
-        this.ValueI = new Value(currentValue[0], currentValue[1] || null);
+        this.ValueI = new Value(this.event, currentValue[0], currentValue[1] || null);
 
         return this;
     }
 
     protected prepareMenu(): JPickerBuilder
     {
-        let currentDate = this.JPickerConfigI.getCurrentValue()[0];
+        let currentDate = this.config.getCurrentValue()[0];
 
-        this.MenuI = new Menu(currentDate.getMonth() + 1, currentDate.getFullYear());
+        this.MenuI = new Menu(
+            this.event,
+            this.config,
+            currentDate.getMonth() + 1, 
+            currentDate.getFullYear()
+        );
 
         return this;
     }
 
     protected prepareDayPicker(): JPickerBuilder
     {
-        let currentValues = this.JPickerConfigI.getCurrentValue(),
+        let currentValues = this.config.getCurrentValue(),
             currentDate = currentValues[0],
             m = currentDate.getMonth() + 1,
             y = currentDate.getFullYear();
 
         this.JPickerI.setVisibleDate([m, y]);
-        this.DayPickerI = new DayPicker(m, y);
+        this.DayPickerI = new DayPicker(this.event, this.config, m, y);
         this.DayPickerI.setSelectedDay(currentDate, 0);
         if (Tools.d(currentValues[1])) {
             this.DayPickerI.setSelectedDay(currentValues[1], 1);
@@ -146,16 +153,20 @@ export class JPickerBuilder extends JPickerHelper {
 
     protected prepareMonthPicker(): JPickerBuilder
     {
-        let currentDate = this.JPickerConfigI.getCurrentValue()[0];
+        let currentDate = this.config.getCurrentValue()[0];
 
-        this.MonthPickerI = new MonthPicker(currentDate.getMonth() + 1);
+        this.MonthPickerI = new MonthPicker(
+            this.event,
+            this.config,
+            currentDate.getMonth() + 1
+        );
 
         return this;
     }
 
     protected prepareYearPicker(): JPickerBuilder
     {
-        let currentDate = this.JPickerConfigI.getCurrentValue()[0];
+        let currentDate = this.config.getCurrentValue()[0];
 
         this.YearPickerI = new YearPicker(currentDate.getFullYear());
 
@@ -164,7 +175,7 @@ export class JPickerBuilder extends JPickerHelper {
 
     protected prepareRanges(): JPickerBuilder
     {
-        this.RangesI = new Ranges();
+        this.RangesI = new Ranges(this.event, this.config);
 
         return this;
     }
