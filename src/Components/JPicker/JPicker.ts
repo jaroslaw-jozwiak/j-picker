@@ -5,29 +5,29 @@ import {Component} from "../Component";
 import {Event} from "../../Classes/Event";
 import {JPickerBuilder} from "./JPickerBuilder";
 import {JPickerEvents} from "./JPickerEvents";
-import {JPickerChanger} from "./JPickerChanger";
 import { CHANGE_VALUE } from "../../Classes/EventsDict";
 
 export class JPicker extends Component
 {
-    protected JPickerBuilderI: JPickerBuilder;
+    private JPickerBuilderI: JPickerBuilder;
 
-    protected JPickerEventsI: JPickerEvents;
+    private JPickerEventsI: JPickerEvents;
 
-    protected JPickerChangerI: JPickerChanger;
+    private currentValue: Array<Date>;
 
-    protected currentValue: Array<Date>;
+    private visibleDate: Array<number>;
 
-    protected visibleDate: Array<number>;
+    private event: Event;
+
+    private config: JPickerConfig;
 
     public constructor(config: JPickerConfigInterface = null)
     {
         super();
-        JPickerConfig.get().setConfig(config);
-        Event.get().setJPicker(this);
-        this.JPickerBuilderI = new JPickerBuilder(this);
-        this.JPickerEventsI = new JPickerEvents(this);
-        this.JPickerChangerI = new JPickerChanger(this);
+        this.event = new Event();
+        this.config = new JPickerConfig(config);
+        this.JPickerBuilderI = new JPickerBuilder(this, this.event, this.config);
+        this.JPickerEventsI = new JPickerEvents(this, this.event, this.config);
         this.run();
     }
 
@@ -44,7 +44,7 @@ export class JPicker extends Component
     public setCurrentValue(currentValue: Array<Date>): JPicker
     {
         this.currentValue = currentValue;
-        Event.get().trigger(CHANGE_VALUE, currentValue);
+        this.event.trigger(CHANGE_VALUE, currentValue);
 
         return this;
     }
@@ -63,17 +63,16 @@ export class JPicker extends Component
 
     protected run()
     {
-        let Wrapper = new DOM(JPickerConfig.get().getWrapper());
+        const wrapper = new DOM(this.config.getWrapper());
 
         this.JPickerBuilderI.buildHTML();
         this.JPickerEventsI.createEvents();
 
-        Wrapper.get().appendChild(this.getHTMLElement());
+        wrapper.get().appendChild(this.getHTMLElement());
     }
 
     protected getMustache(): any
     {
-        //return './JPicker.mustache';
         return require('./JPicker.mustache');
     }
 

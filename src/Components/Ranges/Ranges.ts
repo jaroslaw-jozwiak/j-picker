@@ -10,9 +10,16 @@ export class Ranges extends Component {
 
     protected ranges: Array<RangeInterface>;
 
-    public constructor() {
+    private event: Event;
+
+    private config: JPickerConfig;
+
+    public constructor(event: Event, config: JPickerConfig)
+    {
         super();
-        this.ranges = JPickerConfig.get().getRangesSet();
+        this.event = event;
+        this.config = config;
+        this.ranges = this.config.getRangesSet();
         this.ranges.forEach((v: RangeInterface, key: number) => {
             v.id = key;
         });
@@ -31,13 +38,13 @@ export class Ranges extends Component {
                 keyInt = Tools.int(key),
                 range = that.ranges[keyInt].range;
 
-            Event.get().trigger(RANGE_CLICK, range[0], range[1]);
+            that.event.trigger(RANGE_CLICK, range[0], range[1]);
         }
     }
 
     protected getMustacheVars(): Object {
         return {
-            title: JPickerConfig.get().getRangesTitle(),
+            title: this.config.getRangesTitle(),
             ranges: this.ranges
         };
     }

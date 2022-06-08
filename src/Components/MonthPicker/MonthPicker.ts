@@ -10,9 +10,15 @@ export class MonthPicker extends Picker {
 
     protected month: number;
 
-    public constructor(month: number)
+    private event: Event;
+
+    private config: JPickerConfig;
+
+    public constructor(event: Event, config: JPickerConfig, month: number)
     {
         super();
+        this.event = event;
+        this.config = config;
         this.month = month;
     }
 
@@ -34,7 +40,7 @@ export class MonthPicker extends Picker {
             let month = (<HTMLElement>this).getAttribute('data-key'),
                 monthConverted = Tools.int(month);
 
-                Event.get().trigger(MONTH_CLICK, monthConverted);
+                that.event.trigger(MONTH_CLICK, monthConverted);
            }  
     }
 
@@ -47,7 +53,7 @@ export class MonthPicker extends Picker {
 
     protected getMonths(): Array<ElementInterface>
     {
-        let months = JPickerConfig.get().getMonths(),
+        let months = this.config.getMonths(),
             number = 1,
             result = [];
 

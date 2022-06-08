@@ -2,6 +2,10 @@ import {RangeInterface} from "./RangeInterface";
 
 export interface JPickerConfigInterface
 {
+    title?: string;
+
+    description?: string;
+
     wrapper?: string;
 
     range?: boolean;

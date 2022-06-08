@@ -2,7 +2,7 @@ import { Event } from "./../../src/Classes/Event";
 
 describe("Event class tests", () => {
     test("Test count of calls", () => {
-        const event = Event.get();
+        const event = new Event();
         const event1callbackA = jest.fn();
         const event1callbackB = jest.fn();
         const event2callback = jest.fn();
@@ -27,7 +27,7 @@ describe("Event class tests", () => {
     })
 
     test("Test arguments", () => {
-        const event = Event.get();
+        const event = new Event();
         const callback = jest.fn();
         const TEST_ARG_1 = 1001;
         const TEST_ARG_2 = null;

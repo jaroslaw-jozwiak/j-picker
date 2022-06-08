@@ -14,9 +14,12 @@ export class Value extends Component {
 
     protected dateOpacity2: boolean = false;
 
-    public constructor(date1: Date = null, date2: Date = null)
+    private event: Event;
+
+    public constructor(event: Event, date1: Date = null, date2: Date = null)
     {
         super();
+        this.event = event;
         this.date1 = date1;
         this.date2 = date2;
     }
@@ -115,7 +118,7 @@ export class Value extends Component {
                 ValueDate = that.date2;
             }
 
-            Event.get().trigger(VALUE_CLICK, ValueDate);
+            that.event.trigger(VALUE_CLICK, ValueDate);
         }
     }
 

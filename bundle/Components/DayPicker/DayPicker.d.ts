@@ -1,12 +1,16 @@
 import { Picker } from "../Picker";
+import { JPickerConfig } from "../../Classes/JPickerConfig";
 import { HTMLEvent } from "../../Interface/HTMLEvent";
+import { Event } from "../../Classes/Event";
 import { CalendarCell } from "./CalendarCell";
 export declare class DayPicker extends Picker {
     protected selectedDays: Array<Date>;
     protected dayWithMouse: Date;
     protected month: number;
     protected year: number;
-    constructor(month: number, year: number);
+    private event;
+    private config;
+    constructor(event: Event, config: JPickerConfig, month: number, year: number);
     setMonth(month: number): DayPicker;
     setYear(year: number): DayPicker;
     setSelectedDay(Day: Date, whichDay?: number): DayPicker;

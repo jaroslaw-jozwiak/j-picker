@@ -1,4 +1,5 @@
 import { RangeInterface } from "../Interface/RangeInterface";
+import { JPickerConfig } from "./JPickerConfig";
 export declare class JPickerRangesConfig {
     static THIS_WEEK: string;
     static LAST_WEEK: string;
@@ -13,7 +14,8 @@ export declare class JPickerRangesConfig {
     static LAST_QUARTER: string;
     static NEXT_QUARTER: string;
     protected userRanges: Array<RangeInterface | string>;
-    constructor(userRanges: Array<RangeInterface | string>);
+    private config;
+    constructor(config: JPickerConfig, userRanges: Array<RangeInterface | string>);
     getRanges(): Array<RangeInterface>;
     protected parseRangeItem(item: RangeInterface | string): RangeInterface;
     protected parseRangeDate(input: Array<Date | number>): Array<Date>;

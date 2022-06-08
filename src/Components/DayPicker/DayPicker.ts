@@ -17,9 +17,15 @@ export class DayPicker extends Picker {
 
     protected year: number;
 
-    public constructor(month: number, year: number)
+    private event: Event;
+
+    private config: JPickerConfig;
+
+    public constructor(event: Event, config: JPickerConfig, month: number, year: number)
     {
         super();
+        this.event = event;
+        this.config = config;
         this.month = month;
         this.year = year;
     }
@@ -113,7 +119,7 @@ export class DayPicker extends Picker {
             let day = (<HTMLElement>this).getAttribute('data-day'),
                 dayConverted = Tools.int(day);
 
-            Event.get().trigger(DAY_CLICK, dayConverted, [dayConverted, that.month, that.year]);
+            that.event.trigger(DAY_CLICK, dayConverted, [dayConverted, that.month, that.year]);
         }
     }
 
@@ -123,7 +129,7 @@ export class DayPicker extends Picker {
             let day = (<HTMLElement>this).getAttribute('data-day'),
                 dayConverted = Tools.int(day);
 
-            Event.get().trigger(DAY_MOUSE_ENTER, dayConverted, [dayConverted, that.month, that.year]);
+            that.event.trigger(DAY_MOUSE_ENTER, dayConverted, [dayConverted, that.month, that.year]);
         }
     }
 
@@ -133,7 +139,7 @@ export class DayPicker extends Picker {
             let day = (<HTMLElement>this).getAttribute('data-day'),
                 dayConverted = Tools.int(day);
 
-            Event.get().trigger(DAY_MOUSE_LEAVE, dayConverted, [dayConverted, that.month, that.year]);
+            that.event.trigger(DAY_MOUSE_LEAVE, dayConverted, [dayConverted, that.month, that.year]);
         }
     }
 
@@ -150,7 +156,7 @@ export class DayPicker extends Picker {
 
     protected isToday(dayNb: number): boolean
     {
-        let today = JPickerConfig.get().getToday(),
+        let today = this.config.getToday(),
             processingDay = new Date(this.year, this.month - 1, dayNb);
 
         return today.getDate() === processingDay.getDate()
@@ -164,7 +170,7 @@ export class DayPicker extends Picker {
             firstIteration = true,
             firstDay = this.getFirstWeekDay(),
             daysCount = this.getDaysInMonth(),
-            isRange = JPickerConfig.get().isRange(),
+            isRange = this.config.isRange(),
             result = [],
             _day = 0,
             counter;
@@ -255,7 +261,7 @@ export class DayPicker extends Picker {
     {
         let result = [];
 
-        JPickerConfig.get().getWeeksDays().forEach((day) =>
+        this.config.getWeeksDays().forEach((day) =>
         {
             result.push(
                 (new CalendarCell).setContent(day).setClass('jpicker-label')

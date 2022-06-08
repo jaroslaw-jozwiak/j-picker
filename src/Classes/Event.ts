@@ -1,5 +1,4 @@
 import {EventCallback} from "./EventCallback";
-import {JPicker} from "../Components/JPicker/JPicker";
 import {Tools} from "./Tools";
 
 export class Event {
@@ -10,26 +9,6 @@ export class Event {
     protected callbacksIdsSet = {};
 
     protected callbackId = 1;
-
-    protected JPickerI: JPicker = null;
-
-    private constructor() { }
-
-    public static get(): Event
-    {
-        if (Event.Instance === null) {
-            Event.Instance = new Event;
-        }
-
-        return Event.Instance;
-    }
-
-    public setJPicker(JPickerI: JPicker): Event
-    {
-        this.JPickerI = JPickerI;
-
-        return this;
-    }
 
     public addListener(key: string, callback: Function): number
     {

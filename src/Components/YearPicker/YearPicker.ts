@@ -1,20 +1,18 @@
-import {Picker} from "../Picker";
-import {HTMLEvent} from "../../Interface/HTMLEvent";
-import {ElementInterface} from "../../Interface/ElementInterface";
+import { Picker } from "../Picker";
+import { HTMLEvent } from "../../Interface/HTMLEvent";
+import { ElementInterface } from "../../Interface/ElementInterface";
 
 export class YearPicker extends Picker {
-
     protected year: number;
 
-    public constructor(year: number = null)
-    {
+    public constructor(year: number = null) {
         super();
         this.year = year;
     }
 
     protected getEvents(): Array<HTMLEvent> {
         return [
-            this.getEventObject('.jpicker-element', 'click', this.onYearClick)
+            this.getEventObject(".jpicker-element", "click", this.onYearClick),
         ];
     }
 
@@ -25,12 +23,11 @@ export class YearPicker extends Picker {
     protected getMustacheVars(): Object {
         return {
             elements: this.getYears(),
-            wrapperClass: 'jpicker-years-wrapper'
+            wrapperClass: "jpicker-years-wrapper",
         };
     }
 
-    protected getYears(): Array<ElementInterface>
-    {
+    protected getYears(): Array<ElementInterface> {
         let currentYear = this.year || this.getCurrentYear(),
             minYear = currentYear - 7,
             maxYear = currentYear + 7,
@@ -40,7 +37,7 @@ export class YearPicker extends Picker {
             result.push({
                 key: year,
                 name: year,
-                selected: currentYear === year
+                selected: currentYear === year,
             });
         }
 
@@ -48,11 +45,10 @@ export class YearPicker extends Picker {
     }
 
     protected getCurrentYear(): number {
-        return (new Date).getFullYear();
+        return new Date().getFullYear();
     }
 
     protected getMustache(): any {
-        return require('../List/List.mustache');
+        return require("../List/List.mustache");
     }
-
 }

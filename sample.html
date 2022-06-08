@@ -6,40 +6,84 @@
     <title>JPickerTest</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="bundle/JPicker.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
+    <style>
+        .picker-sample-wrapper {
+            display: flex;
+            margin: 10px 0 30px;
+        }
+        pre {
+            margin-left: 30px;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="container">
+    <div class="container mb">
         <div class="row">
             <div class="col-12">
-                <h3>Install</h3>
-                <pre>require(['dist/JPicker.js'], function(JPicker) {
-    var JPickerI = new JPicker({...});
-});</pre>
-                <pre>&lt;script src="/dist/JPicker.js"&gt;&lt;/script&gt;
-var JPickerI = new JPicker({
-    wrapper: '.date-picker-wrapper',
-    title: 'Wybierz date',
-    description: 'Wybierz termin na który chcesz zarezerwować pokój',
-    range: true
-});</pre>
+                <h3>JPikcer with default config</h3>
+                <div class="picker-sample-wrapper">
+                    <div class="date-picker-default-wrapper"></div>
+                    <pre>const jpicker = new JPicker({
+    wrapper: '.date-picker-default-wrapper'
+});</pre> 
+                </div>
             </div>
         </div>
         <div class="row">
             <div class="col-12">
-                <div class="date-picker-wrapper"></div>
+                <h3>JPikcer with own config</h3>
+                <div class="picker-sample-wrapper">
+                    <div class="date-picker-config-wrapper"></div>
+                    <pre>const jpicker = new JPicker({
+    wrapper: '.date-picker-config-wrapper',
+    title: 'Your title',
+    description: 'Some text',
+    range: true,
+    currentDate: [new Date(2022, 4, 10), new Date(2022, 4, 15)],
+    today: new Date(2022, 4, 15, 1, 22),
+    weekDays: [
+        'M', 'T', 'W', 'T', 'F', 'Sa', 'Su'
+    ],
+    months: [
+        'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII'
+    ],
+    events: {
+        onValueClick: function() {
+            console.log('onValueClick', arguments)
+        },
+        onDayClick: function() {
+            console.log('onDayClick', arguments)
+        },
+        onChangeValue: function() {
+            console.log('onChangeValue', arguments)
+        }
+    }
+});</pre> 
+                </div>
             </div>
         </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
-
     <script>
         require(['bundle/JPicker.js'], function(JPicker) {
-            var JPickerI = new JPicker({
-                wrapper: '.date-picker-wrapper',
-                title: 'Wybierz date',
-                description: 'Wybierz termin na który chcesz zarezerwować pokój',
+            var jpickerDefault = new JPicker({
+                wrapper: '.date-picker-default-wrapper'
+            });
+
+            var jpickerFromConfig = new JPicker({
+                wrapper: '.date-picker-config-wrapper',
+                title: 'Your title',
+                description: 'Some text',
                 range: true,
+                currentDate: [new Date(2022, 4, 10), new Date(2022, 4, 15)],
+                today: new Date(2022, 4, 15, 1, 22),
+                weekDays: [
+                    'M', 'T', 'W', 'T', 'F', 'Sa', 'Su'
+                ],
+                months: [
+                    'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII'
+                ],
                 events: {
                     onValueClick: function() {
                         console.log('onValueClick', arguments)
@@ -51,11 +95,6 @@ var JPickerI = new JPicker({
                         console.log('onChangeValue', arguments)
                     }
                 }
-                //currentDate: new Date(2022, 4, 10)
-                //currentDate: [new Date(2022, 4, 10), new Date(2022, 4, 15)]
-                //today: new Date(2022, 4, 15, 1, 22)
-                //weekDays: [],
-                //months: []
             });
         });
     </script>
