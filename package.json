@@ -1,6 +1,6 @@
 {
     "name": "j-picker",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Simply date picker for web applications",
     "main": "bundle/JPicker.js",
     "types": "bundle/JPicker.d.ts",
