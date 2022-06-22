@@ -10,6 +10,7 @@ export declare class JPickerEvents extends JPickerHelper {
     protected addListeners(events: Object): JPickerEvents;
     protected dayClick(day: number, date: Array<number>): JPickerEvents;
     protected setRange(): JPickerEvents;
+    protected valueChange(currentValue: Array<Date>): JPickerEvents;
     protected dayMouseEnter(day: number, date: Array<number>): JPickerEvents;
     protected dayMouseLeave(day: number, date: Array<number>): JPickerEvents;
     protected rangeClick(FromDate: Date, ToDate: Date): JPickerEvents;

@@ -9,7 +9,8 @@ import {
     RANGE_CLICK, 
     VALUE_CLICK,
     MENU_MONTH_CLICK,
-    MONTH_CLICK
+    MONTH_CLICK,
+    CHANGE_VALUE
 } from "../../Classes/EventsDict";
 import {Tools} from "../../Classes/Tools";
 import {JPickerHelper} from "./JPickerHelper";
@@ -54,6 +55,7 @@ export class JPickerEvents extends JPickerHelper {
             [VALUE_CLICK, this.valueClick],
             [MENU_MONTH_CLICK, this.menuMonthClick],
             [MONTH_CLICK, this.monthClick],
+            [CHANGE_VALUE, this.valueChange],
         ].forEach((eventArray: Array<string | Function>) => {
             result[eventArray[0].toString()] = function() {
                 (<Function>eventArray[1]).apply(that, arguments);
@@ -95,8 +97,6 @@ export class JPickerEvents extends JPickerHelper {
             this.daysSelected++;
         } else {
             this.JPickerI.setCurrentValue([DateI]);
-            this.JPickerI.getBuilder().getValue().setDateOne(DateI).refresh();
-            this.JPickerI.getBuilder().getDayPicker().setSelectedDay(DateI, 0).refreshSelectedDays();
         }
 
         return this;
@@ -106,8 +106,6 @@ export class JPickerEvents extends JPickerHelper {
     {
         let time1 = this.dateOneTmp.getTime(),
             time2 = this.dateTwoTmp.getTime(),
-            ValueI = this.JPickerI.getBuilder().getValue(),
-            DayPickerI = this.JPickerI.getBuilder().getDayPicker(),
             DateTmp;
 
         if (time1 > time2) {
@@ -115,12 +113,43 @@ export class JPickerEvents extends JPickerHelper {
             this.dateOneTmp = this.dateTwoTmp;
             this.dateTwoTmp = DateTmp;
         }
-        ValueI.setDateOne(this.dateOneTmp);
-        DayPickerI.setSelectedDay(this.dateOneTmp, 0);
-
+        
         this.JPickerI.setCurrentValue([this.dateOneTmp, this.dateTwoTmp]);
-        ValueI.setDateTwo(this.dateTwoTmp).setDateTwoOpacity(false).refresh();
-        DayPickerI.setSelectedDay(this.dateTwoTmp, 1).refreshSelectedDays();
+
+        return this;
+    }
+
+    protected valueChange(currentValue: Array<Date>): JPickerEvents
+    {
+        const 
+            ValueI = this.JPickerI.getBuilder().getValue(),
+            DayPickerI = this.JPickerI.getBuilder().getDayPicker(),
+            visibleDate = this.JPickerI.getVisibleDate(),
+            visibleMonth = visibleDate[0],
+            visibleYear = visibleDate[1];
+            
+        let dateTmp,
+            monthToShow,
+            yearToShow;
+
+        if (this.config.isRange()) {
+            ValueI.setDateOne(currentValue[0]);
+            DayPickerI.setSelectedDay(currentValue[0], 0);
+            ValueI.setDateTwo(currentValue[1]).setDateTwoOpacity(false).refresh();
+            DayPickerI.setSelectedDay(currentValue[1], 1).refreshSelectedDays();
+            dateTmp = currentValue[1];
+        } else {
+            this.JPickerI.getBuilder().getValue().setDateOne(currentValue[0]).refresh();
+            this.JPickerI.getBuilder().getDayPicker().setSelectedDay(currentValue[0], 0).refreshSelectedDays();
+            dateTmp = currentValue[0];
+        }
+
+        monthToShow = dateTmp.getMonth() + 1;
+        yearToShow = dateTmp.getFullYear();
+
+        if (monthToShow !== visibleMonth || yearToShow !== visibleYear) {
+            this.setMonthAndYear(monthToShow, yearToShow);
+        }
 
         return this;
     }

@@ -73,6 +73,17 @@ const value = picker.getCurrentValue();//returns Array<Date>
 
 <br />
 
+### Setting new value 
+
+```javascript
+//for range
+const value = picker.setCurrentValue([new Date(2020, 01, 8), new Date(2020, 01, 12)])
+//for single
+const value = picker.setCurrentValue([new Date(2020, 01, 8)])
+```
+
+<br />
+
 ## Configuration
 
 Object with configuration should be passed to JPicker constructor. 
