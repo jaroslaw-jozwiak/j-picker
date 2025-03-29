@@ -1,10 +1,12 @@
+@use "../../Vars.scss" as Vars;
+
 .jpicker-menu {
   margin: 20px 0;
   display: flex;
   width: 100%;
   justify-content: center;
   align-items: center;
-  @include no-selection();
+  @include Vars.no-selection;
 
   .border-bottom {
     border: 0;
