@@ -1,6 +1,7 @@
 import { JPickerConfigInterface } from "../../Interface/JPickerConfigInterface";
 import { Component } from "../Component";
 import { JPickerBuilder } from "./JPickerBuilder";
+import "../../JPicker.scss";
 export declare class JPicker extends Component {
     private JPickerBuilderI;
     private JPickerEventsI;

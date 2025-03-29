@@ -1,3 +1,5 @@
+@use "../../Vars.scss" as Vars;
+
 .jpicker-list-wrapper {
   position: absolute;
   width: 100%;
@@ -20,7 +22,7 @@
 
     &:hover,
     &.jpicker-selected {
-      background-color: $jpicker-cell-hover-bg;
+      background-color: Vars.$jpicker-cell-hover-bg;
     }
   }
 }

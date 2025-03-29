@@ -1,3 +1,5 @@
+@use "../../Vars.scss" as Vars;
+
 .jpicker-days-wrapper {
     position: relative;
     transition: left .2s;
@@ -20,20 +22,20 @@
                 cursor: pointer;
                 transition: background .2s, color .2s;
                 &:hover {
-                    background-color: $jpicker-cell-hover-bg;
+                    background-color: Vars.$jpicker-cell-hover-bg;
                 }
             }
         }
         &.jpicker-selected-day .jpicker-calendar-cell-content {
-            background-color: $jpicker-cell-selected-bg;
-            color: $jpicker-cell-selected-text;
+            background-color: Vars.$jpicker-cell-selected-bg;
+            color: Vars.$jpicker-cell-selected-text;
         }
         &.jpicker-selected-range-day .jpicker-calendar-cell-content {
-            background-color: $jpicker-cell-selected-range-bg;
-            color: $jpicker-cell-selected-range-text;
+            background-color: Vars.$jpicker-cell-selected-range-bg;
+            color: Vars.$jpicker-cell-selected-range-text;
         }
         &.preselected .jpicker-calendar-cell-content {
-            background-color: $jpicker-cell-preselected-bg;
+            background-color: Vars.$jpicker-cell-preselected-bg;
         }
         &::after {
             content: "";

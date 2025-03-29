@@ -1,10 +1,10 @@
 const path = require("path");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
     entry: {
         JPicker: "./src/JPicker.ts",
-        Styles: "./src/JPicker.scss",
     },
     output: {
         filename: "[name].js",
@@ -22,7 +22,10 @@ module.exports = {
         extensions: [".tsx", ".ts", ".js"],
     },
     plugins: [
-        new CleanWebpackPlugin()
+        new CleanWebpackPlugin(),
+        new MiniCssExtractPlugin({
+            filename: "JPicker.css",
+        }),
     ],
     module: {
         rules: [
@@ -60,17 +63,9 @@ module.exports = {
             {
                 test: /\.scss$/,
                 use: [
-                    {
-                        loader: "file-loader",
-                        options: {
-                            name: "JPicker.css",
-                        },
-                    },
-                    { loader: "extract-loader" },
-                    { loader: "css-loader" },
-                    {
-                        loader: "postcss-loader",
-                    },
+                    MiniCssExtractPlugin.loader,
+                    "css-loader",
+                    "postcss-loader",
                     {
                         loader: "sass-loader",
                         options: {

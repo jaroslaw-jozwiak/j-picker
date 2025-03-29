@@ -6,6 +6,7 @@ import {Event} from "../../Classes/Event";
 import {JPickerBuilder} from "./JPickerBuilder";
 import {JPickerEvents} from "./JPickerEvents";
 import { CHANGE_VALUE } from "../../Classes/EventsDict";
+import "../../JPicker.scss";
 
 export class JPicker extends Component
 {
