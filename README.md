@@ -11,7 +11,7 @@ Simply date picker for web applications
 
 <br />
 
-![JPicker](https://shop.foodwork.pl/jpicker.gif)
+![JPicker](https://raw.githubusercontent.com/jaroslaw-jozwiak/j-picker/refs/heads/master/docs/jpicker.png)
 
 <br />
 
